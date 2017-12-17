@@ -29,9 +29,29 @@ aToZ = ['a'..'z']
 oneToX x = [1..x]
 
 -- List Comprehensions
-doubleEvensToX x = [x * 2 | x <= [2,4..x]]
+doubleEvensToX x = [x * 2 | x <- [2,4..x]]
 
 -- Tuples
 getFirst t = fst t
 getSecond t = snd t
 buildTuples l1 l2 = zip l1 l2
+
+power x y =
+  if y == 0
+  then 1
+  else x * (power x (y - 1))
+
+power2 x y = powerLoop x y 1
+powerLoop x y val =
+  if y > 0
+  then powerLoop x (y - 1) (val * x)
+  else val
+
+-- Taken from Pluralsight course Haskell Fundamentals Part 1
+removeOdd nums =
+  if null nums
+  then []
+  else
+    if (mod (head nums) 2) == 0
+    then (head nums) : (removeOdd (tail nums))
+    else removeOdd (tail nums)
