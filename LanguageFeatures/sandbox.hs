@@ -55,3 +55,24 @@ removeOdd nums =
     if (mod (head nums) 2) == 0
     then (head nums) : (removeOdd (tail nums))
     else removeOdd (tail nums)
+
+-- Pattern Matching
+removeOddPm [] = []
+removeOddPm (x : xs) = 
+  if (mod x 2) == 0 
+  then x : (removeOddPm xs)
+  else removeOddPm xs
+
+-- Guards
+pow2 n
+  | n == 0 = 1
+  | otherwise = 2 * (pow2 (n - 1))
+
+removeOddGuard [] = []
+removeOddGuard (x : xs)
+  | mod x 2 == 0 = x : (removeOddGuard xs)
+  | otherwise = removeOddGuard xs
+
+allOdd nums = case (removeOddGuard nums) of
+  [] -> True
+  (x : xs) -> False
