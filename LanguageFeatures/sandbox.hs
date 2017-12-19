@@ -76,3 +76,19 @@ removeOddGuard (x : xs)
 allOdd nums = case (removeOddGuard nums) of
   [] -> True
   (x : xs) -> False
+
+getStringLengths l = map length l
+
+doubleElements = map (2*)
+
+isEven x = mod x 2 == 0
+removeOddFilter = filter isEven
+
+doubleEvens l = map (2*) (filter isEven l)
+
+foldSum l = foldl (+) 0 l
+
+doubleLambda l = map (\ x -> 2 * x) l
+
+notNullComposition = not . null
+
