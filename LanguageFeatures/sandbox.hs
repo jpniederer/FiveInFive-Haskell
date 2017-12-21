@@ -90,5 +90,24 @@ foldSum l = foldl (+) 0 l
 
 doubleLambda l = map (\ x -> 2 * x) l
 
-notNullComposition = not . null
+--notNullComposition = not . null
 
+-- Type Synonyms
+type String = [Char]
+type Point = (Double, Double)
+
+-- Newtype, extends an existing type
+newtype CustomerNumber = MakeCustomerNumber [Char]
+getCustomerNumber (MakeCustomerNumber n) = n
+
+testCustomerNumber = 
+  let c = MakeCustomerNumber "abc123"
+  in getCustomerNumber c
+
+-- Quicksort
+quicksort :: (Ord a) => [a] -> [a]
+quicksort [] = []
+quicksort (x : xs) =
+  let smallerSet = quicksort [a | a <- xs, a <= x]
+      biggerSet = quicksort [a | a <- xs, a > x]
+  in smallerSet ++ [x] ++ biggerSet
