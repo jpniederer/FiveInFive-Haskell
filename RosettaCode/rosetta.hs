@@ -20,7 +20,7 @@ numbers = [x | x <- [1..10]]
 numbersSquared = [x * x | x <- [1..10]]
 
 -- Recursion
-pow x y = powerIter x y 1
+power x y = powerIter x y 1
   
 powerIter x y total
   | y <= 0 = 1 * total

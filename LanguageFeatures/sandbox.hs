@@ -93,7 +93,7 @@ doubleLambda l = map (\ x -> 2 * x) l
 --notNullComposition = not . null
 
 -- Type Synonyms
-type String = [Char]
+type String' = [Char]
 type Point = (Double, Double)
 
 -- Newtype, extends an existing type
@@ -111,3 +111,29 @@ quicksort (x : xs) =
   let smallerSet = quicksort [a | a <- xs, a <= x]
       biggerSet = quicksort [a | a <- xs, a > x]
   in smallerSet ++ [x] ++ biggerSet
+
+-- Records
+data Customer = MakeCustomer
+  {
+    customerNumber :: CustomerNumber
+  , name :: String
+  , luckyNumber :: Int
+  }
+
+josh :: Customer
+josh = MakeCustomer
+  { customerNumber = MakeCustomerNumber "Josh123"
+  , name = "Josh"
+  , luckyNumber = 255
+  }
+
+-- name josh -> "Josh"
+-- luckyNumber josh -> 255
+-- use algebraic data types over records.
+
+-- Algebraic Data Types
+data CustomerAc = CustomerAc CustomerNumber String Int
+joshAc :: CustomerAc
+joshAc = CustomerAc (MakeCustomerNumber "Josh123") "Josh" 255
+getCustomerNumberAc :: CustomerAc -> CustomerNumber
+getCustomerNumberAc (CustomerAc cust_number _ _) = cust_number
